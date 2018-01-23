@@ -85,7 +85,7 @@ export class Test extends React.Component<{}, States> {
                 <Headline content={"SHOPPING LIST"} />
 
                 {
-                    message !== "" ? <p>The item is already on list!</p> : null
+                    (message !== "") ? <p>The item is already on list!</p> : null
                 }
 
                 <form onSubmit={this.addItem} ref={input => this.addForm = input} /* This is a ref callback */ id="shopForm">
@@ -93,6 +93,9 @@ export class Test extends React.Component<{}, States> {
                     <button type="submit">Add</button>
                 </form>
 
+                {
+                    itemsToBuy.length > 0 &&
+                
                 <table className="shopTable">
                     <tbody>
                         <tr>
@@ -108,7 +111,7 @@ export class Test extends React.Component<{}, States> {
                         */
                         return (                             
                             <tr key={item}>
-                                <th>1</th>
+                                <th>{itemsToBuy.indexOf(item) + 1 /* Get index of current item and increase it by 1 (cuz index start with num 0) */}</th>
                                 <td>{item}</td>
                                 <td>
                                     <button onClick={() => this.removeItem(item)}>
@@ -121,6 +124,7 @@ export class Test extends React.Component<{}, States> {
                 }
                     </tbody>
                 </table>
+                }
             </div>
         );
     }
