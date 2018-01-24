@@ -71,6 +71,8 @@ export class Test extends React.Component<{}, States> {
         this.setState({
             itemsToBuy: [...newBuyItems]
         });
+
+        if(this.state.itemsToBuy.length == 1) this.setState({message: "Shopping list is empty!"});
     }
     
     public render(): JSX.Element {
@@ -85,7 +87,7 @@ export class Test extends React.Component<{}, States> {
                 <Headline content={"SHOPPING LIST"} />
 
                 {
-                    (message !== "") ? <p>The item is already on list!</p> : null
+                    (message !== "") ? <p>{this.state.message}</p> : null
                 }
 
                 <form onSubmit={this.addItem} ref={input => this.addForm = input} /* This is a ref callback */ id="shopForm">
