@@ -72,7 +72,7 @@ export class Test extends React.Component<{}, States> {
             itemsToBuy: [...newBuyItems]
         });
 
-        if(this.state.itemsToBuy.length == 1) this.setState({message: "Shopping list is empty!"});
+        if(this.state.itemsToBuy.length == 1) this.setState({message: "Shopping list is empty!"}); /* We check if list is empty, if it is we set new message to show */
     }
     
     public render(): JSX.Element {
@@ -87,7 +87,7 @@ export class Test extends React.Component<{}, States> {
                 <Headline content={"SHOPPING LIST"} />
 
                 {
-                    (message !== "") ? <p>{this.state.message}</p> : null
+                    (message !== "") ? <p>{this.state.message}</p> : null /* Conditional rendering message */
                 }
 
                 <form onSubmit={this.addItem} ref={input => this.addForm = input} /* This is a ref callback */ id="shopForm">

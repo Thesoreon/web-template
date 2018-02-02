@@ -1,11 +1,18 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import "./style/main.less";
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import reducers from './reducers';
 
+const createStoreWithMiddleware = applyMiddleware()(createStore);
+
+/* Components */
 import { Index } from "./components/index.component";
 
 ReactDOM.render(
-    <Index/>,
+    <Provider store={createStoreWithMiddleware(reducers)}>
+        <Index />
+    </Provider>,
     document.getElementById("example")
 );
