@@ -6,7 +6,8 @@ module.exports = {
 
     output: {
         filename: "bundle.js",
-        path: path.resolve(__dirname, "dist")
+        path: path.resolve(__dirname, "dist"),
+        publicPath: "/"
     },
 
     // Enable sourcemaps for debugging webpack's output.
@@ -39,7 +40,8 @@ module.exports = {
         compress: true,
         port: 8080,
         stats: "errors-only", //Avoids terminal logs
-        open: true
+        open: true,
+        historyApiFallback: true
     },
 
     plugins: [

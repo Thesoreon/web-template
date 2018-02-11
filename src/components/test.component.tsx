@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 
 /* Instead of using this you can use class, they support lifecycle methods etc.. */
 const Headline = (props: any) => {
@@ -84,6 +85,8 @@ export class Test extends React.Component<{}, States> {
 
         return (
             <div>
+                <Link to="/test2">Test 2</Link>
+
                 <Headline content={"SHOPPING LIST"} />
 
                 {
@@ -128,6 +131,14 @@ export class Test extends React.Component<{}, States> {
                 </table>
                 }
             </div>
+        );
+    }
+}
+
+export class Test2 extends React.Component {
+    render() {
+        return(
+            <Link to="/">Test 2</Link>
         );
     }
 }
