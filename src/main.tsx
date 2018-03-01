@@ -11,6 +11,8 @@ const createStoreWithMiddleware = applyMiddleware()(createStore);
 /* Components */
 import { Test, Test2 } from "./components/test.component";
 
+import "./style/main.less";
+
 ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers)}>
         <BrowserRouter>

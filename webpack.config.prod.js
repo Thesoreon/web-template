@@ -1,5 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     entry: "./src/main.tsx",
@@ -16,6 +18,13 @@ module.exports = {
     module: {
         rules: [
             { test: /\.less$/, use: ["style-loader","css-loader", "less-loader"]},
+            {
+                test: /\.less$/,
+                use: ExtractTextPlugin.extract({
+                  fallback: 'style-loader',
+                  use: ['css-loader', 'less-loader']
+                })
+            },
             { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
             { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
             {
@@ -40,6 +49,12 @@ module.exports = {
             },
             inject: true,
             template: "./src/index.ejs",
-        })
+        }),
+        new ExtractTextPlugin({
+            filename: "styles.[chunkhash].css",
+            disable: false,
+            allChunks: true
+        }),
+        new UglifyJsPlugin()
     ],
 }
