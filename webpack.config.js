@@ -50,7 +50,7 @@ module.exports = {
 
     plugins: [
         new HtmlWebpackPlugin({
-            title: "Template",
+            title: "DEVBUILD",
             minify: {
                 collapseWhitespace: true
             },

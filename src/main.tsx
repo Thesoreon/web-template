@@ -22,5 +22,5 @@ ReactDOM.render(
             </Switch>
         </BrowserRouter>
     </Provider>,
-    document.getElementById("example")
+    document.getElementById("MOUNT")
 );
