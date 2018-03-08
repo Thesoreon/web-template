@@ -2,23 +2,18 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { initializeStore } from "./store";
 
-import reducers from './reducers/reducer';
+import Index from "./components/index.component";
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
-
-/* Components */
-import { Test, Test2 } from "./components/test.component";
-
+/* Styles */
 import "./style/main.less";
 
 ReactDOM.render(
-    <Provider store={createStoreWithMiddleware(reducers)}>
+    <Provider store={initializeStore()}>
         <BrowserRouter>
             <Switch>
-                <Route path="/test2" component={Test2}/>
-                <Route path="/" component={Test}/>
+                <Index />
             </Switch>
         </BrowserRouter>
     </Provider>,
