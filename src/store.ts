@@ -15,6 +15,3 @@ export function initializeStore() {
     
     return createStoreWithMiddleware(reducers)
 }
-
-
-
