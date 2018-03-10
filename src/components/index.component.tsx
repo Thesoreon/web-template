@@ -5,6 +5,7 @@ import { Route } from "react-router-dom";
 
 export default class Index extends React.Component {
     render() {
+        var x = 5;
         return(
             <div>
                 
