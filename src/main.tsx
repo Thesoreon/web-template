@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { Route, BrowserRouter, Switch } from "react-router-dom";
-import { Provider } from 'react-redux';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Provider } from "react-redux";
 import { initializeStore } from "./store";
 
 import Index from "./components/index.component";
@@ -16,6 +16,5 @@ ReactDOM.render(
                 <Index />
             </Switch>
         </BrowserRouter>
-    </Provider>,
-    document.getElementById("MOUNT")
+    </Provider>, document.getElementById("MOUNT")
 );
