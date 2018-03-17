@@ -11,5 +11,6 @@ export function initializeStore() {
     const createStoreWithMiddleware = composeWithDevTools(...enhancers)(createStore);
 
     const store = createStoreWithMiddleware(reducers);
-    return createStoreWithMiddleware(reducers);
+
+    return store;
 }
