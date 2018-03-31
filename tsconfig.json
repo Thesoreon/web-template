@@ -2,13 +2,16 @@
     "compilerOptions": {
       "outDir": "./dist/",
       "sourceMap": true,
-      "noImplicitAny": true,
-      "strictNullChecks": true,
+      "strict": true,
+      "moduleResolution": "node",
       "module": "commonjs",
       "target": "es5",
       "jsx": "react"
     },
     "include": [
       "./src/**/*"
+    ],
+    "exclude": [
+      "node_modules"
     ]
   }

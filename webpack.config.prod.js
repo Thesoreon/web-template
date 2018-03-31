@@ -1,6 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
@@ -17,29 +17,41 @@ module.exports = {
 
     module: {
         rules: [
-            { test: /\.less$/, use: ["style-loader","css-loader", "less-loader"]},
+            { 
+                test: /\.tsx?$/, 
+                enforce: "pre",
+                loader: "tslint-loader"
+            },
+            { 
+                test: /\.less$/,
+                use: ["style-loader","css-loader", "less-loader"]
+            },
             {
                 test: /\.less$/,
                 use: ExtractTextPlugin.extract({
-                  fallback: 'style-loader',
-                  use: ['css-loader', 'less-loader']
+                  fallback: "style-loader",
+                  use: ["css-loader", "less-loader"]
                 })
             },
-            { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
-            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+            { 
+                test: /\.tsx?$/,
+                loader: "awesome-typescript-loader" 
+            },
+            { 
+                test: /\.js$/,
+                enforce: "pre",
+                loader: "source-map-loader" 
+            },
             {
                 test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
-                loader: 'url-loader',
-                options: {
-                    limit: 100
-                }
+                loader: "file-loader",
             }
         ]
     },
 
     plugins: [
         new HtmlWebpackPlugin({
-            title: "Template",
+            title: "Production Build",
             minify: {
                 removeComments: true,
                 collapseWhitespace: true,
@@ -55,6 +67,8 @@ module.exports = {
             disable: false,
             allChunks: true
         }),
-        new UglifyJsPlugin()
+        new UglifyJsPlugin({
+            sourceMap: true
+        })
     ],
 }

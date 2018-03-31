@@ -17,6 +17,9 @@ export default class Index extends React.Component {
 
 const Example = () => {
     return(
-        <div>This is an example</div>
+        <div>
+            This is an example
+            <img src={require("../assets/test.png")} alt="test"/>
+        </div>
     );
 };

@@ -6,12 +6,10 @@ module.exports = {
     entry: "./src/main.tsx",
 
     output: {
-        filename: "bundle.js",
+        filename: "bundle.[chunkhash].js",
         path: path.resolve(__dirname, "dist"),
         publicPath: "/"
     },
-
-    devtool: "source-map",
 
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".json"]
@@ -19,42 +17,50 @@ module.exports = {
 
     module: {
         rules: [
-            { test: /\.tsx?$/, enforce: 'pre', loader: 'tslint-loader'},
-            { test: /\.less$/, use: ["style-loader","css-loader", "less-loader"]},
+            { 
+                test: /\.tsx?$/, 
+                enforce: "pre",
+                loader: "tslint-loader"
+            },
+            { 
+                test: /\.less$/,
+                use: ["style-loader","css-loader", "less-loader"]
+            },
             {
                 test: /\.less$/,
                 use: ExtractTextPlugin.extract({
-                  fallback: 'style-loader',
-                  use: ['css-loader', 'less-loader']
+                  fallback: "style-loader",
+                  use: ["css-loader", "less-loader"]
                 })
             },
-            { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
-            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+            { 
+                test: /\.tsx?$/,
+                loader: "awesome-typescript-loader" 
+            },
+            { 
+                test: /\.js$/,
+                enforce: "pre",
+                loader: "source-map-loader" 
+            },
             {
                 test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
-                loader: 'url-loader',
-                options: {
-                    limit: 100
-                }
+                loader: "file-loader",
             }
         ]
     },
 
     devServer: {
         contentBase: path.join(__dirname, "dist"),
-        compress: true,
-        port: 8080,
         stats: "errors-only",
+        port: 8080,
+        compress: true,
         open: true,
         historyApiFallback: true
     },
 
     plugins: [
         new HtmlWebpackPlugin({
-            title: "DEVBUILD",
-            minify: {
-                collapseWhitespace: true
-            },
+            title: "Development Build",
             hash: true,
             template: "./src/index.ejs",
         }),
